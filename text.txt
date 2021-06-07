@@ -1,0 +1,20 @@
+g++ -g -Wall -std=c++11 -o main main.cpp -I/usr/lib64/ -I/usr/local/lib64/python3.8/site-packages/tensorflow/include/external/boringssl/src/include/ -l:libcrypto.so.1.1
+
+
+srand(time(NULL));
+    std::string password;
+    for(char i  = 0; i < N; i++){
+        password.push_back((char)(rand()%10 + 48));
+    }
+    cout << "Password: " << "foobar" << endl;
+    cout << "Hash: " << sha256("foobar") << endl;
+
+
+CXX=g++
+CXXFLAG=-g -ggdb -Wall -std=c++11 -I/usr/lib64/ -I/usr/local/lib64/python3.8/site-packages/tensorflow/include/external/boringssl/src/include/
+LDFLAGS=-l:libcrypto.so.1.1
+.PHONY: clean
+
+
+main: main.cpp
+	${CXX} ${CXXFLAG} -o main main.cpp ${LDFLAGS}
